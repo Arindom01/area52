@@ -1,0 +1,16 @@
+
+#/bin/bash
+
+rm -Rf dist
+rm -Rf build
+rm -Rf plugins.egg-info
+rm -R plugins/package/plugins-1.1.tar.gz
+rm -Rf venv/lib/python3.6/site-packages/plugins-1.1.dist-info
+rm -Rf venv/lib/python3.6/site-packages/plugins
+
+python setup.py sdist bdist_wheel
+cp dist/plugins-1.1.tar.gz plugins/package/
+pip install plugins/package/plugins-1.1.tar.gz
+
+
+
