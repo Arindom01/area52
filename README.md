@@ -7,7 +7,7 @@ This repository consists of all the code needed to create a pypi/pip package tha
 
 The tool exposes a command line binary (I named it as area52 :)) that takes subcommand parsesteps and start looking for files with extension ".hc". The first file it loads is "runlist.hc" which defines the order of execution
 
-'''
+```
 {
   "run_list": [
   "recipe[provision_dirs]",
@@ -15,12 +15,12 @@ The tool exposes a command line binary (I named it as area52 :)) that takes subc
   "recipe[start_service]"
   ]
 }
-'''
+```
 Each entry in the recipe indicates that there exists another file with that name in the same directory (e.g provision_dirs.hc) and in which order the tool shall execute them.
 
 Each recipe file consists of action which instruct what needs to be installed or configured. For example "install_apt_packages.hc" defines what apt packages to be installed in ubuntu or debian OS
 
-'''
+```
 package "systemctl" do {
   os            = [ "debian", "ubuntu" ] 
   action        = "install"
@@ -50,10 +50,11 @@ package "python3" do {
   action        = "install"
   package       = "python3"
 }
-'''
+```
 
 Each action has a corresponding processor class in the actions directory
 
+```
 project_root
 |
 |...plugins
@@ -65,24 +66,26 @@ project_root
         |service.py
         |shell.py
         |template.py
+```
 
 There is also a set  of helper classes that helps in iterating over all the *.hc files and creating a queue for processing the tasks in the defeind order as below
 
+```
 project_root
 |
 |...plugins
     |
     |...helper
         |queuesteps.py
-
-'''
+```
+```
 task_order = [
               "file", 
               "directory",
               "template", 
               "package", 
               "service"]
-'''
+```
 ## Features 
 
 	• Tool is built as a python package which could be installed using setup.py or pip. 
